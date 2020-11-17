@@ -1,4 +1,4 @@
-	[
+datas =  [
 		{
 			"word": "biodiversity",
 			"means": "生物多样性",

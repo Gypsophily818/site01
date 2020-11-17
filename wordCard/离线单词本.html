@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 		<script src="./JS/jquery.min.js"></script>
+		<script src="./data/words.js"></script>
 		<style>
 			ul , li {
 				padding: 0;margin: 0;
@@ -112,7 +113,7 @@
   <body>
     <div id="warp">
 			<ul id="showword">
-				
+				<p style="color: black;font-size:32px;">点击下方的绿色按钮即可开始背诵~</p> 
 			</ul>
 			<button id="next">next</button>
 			<button id="previous">previous</button>
@@ -149,7 +150,7 @@
 			// 数据地址
 				this.url = "./data/words.json";
 			// 单词索引
-				this.index = 0;
+				// this.index = 0;
 				// this.index;
 			// pre按钮
 				this.prevBtn = document.querySelector("#previous");
@@ -175,13 +176,8 @@
 			WordCard.prototype.init = function(){
 				let _this = this;
 				this.setbackgroundColor();
-				// 请求数据
-				this.getData( this.url , function(data){
-					if(data === undefined || data.length == 0) return;
-					console.log(data);
-					_this.data = data;
-					_this.showWord();
-				});
+				this.index = 0;
+				this.data = datas;
 				this.click();
 				// 缓存(记录单词索引)
 
@@ -191,27 +187,6 @@
 				// 设置背景颜色
 				this.cardElement.style.backgroundColor = color || this.backgroundColor ;
 			}
-			// 请求数据的方法
-			WordCard.prototype.getData = function( url , callback ){
-				let _this = this;
-				// 执行ajax读取本地文档
-					$.ajax({
-						url : url,
-						// type : "get",
-						// dataType : "jsonp",
-						async : false,
-						success : function (res){
-							if(res){
-								callback && callback(res);
-							}
-						},
-						error : function(err){
-							console.log(err,"请求失败");
-						}
-					});
-
-			}
-
 			// 显示数据的方法
 			WordCard.prototype.showWord = function(){
 				// 获取地址
@@ -268,11 +243,10 @@
 			WordCard.prototype.recordData = function(){
 				this.recordIndex = localStorage.setItem("recordIndex",this.index);
 			}
-
-			var card = new WordCard({
-				backgroundColor : "pink",
-			});
+			var card = new WordCard({ });
 			card.init();
+
+			
 		</script>
   </body>
 </html>
