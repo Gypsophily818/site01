@@ -64,6 +64,19 @@
 				background-color: rgb(133, 174, 190);
 
 			}
+			#warp #changeColor {
+				width: 130px;
+				background: linear-gradient(to bottom, skyblue , pink ,rgb(141, 147, 182)) ;
+				color: darkslateblue;
+				position: absolute;
+				right: -165px;
+				top: 0;
+			}
+			#warp #setColor  {
+				position: absolute;
+				right: -180px;
+				top: 60px;
+			}
 			#warp audio {
 				width: 40px;
 				height: 40px;
@@ -118,6 +131,8 @@
 			<button id="next">next</button>
 			<button id="previous">previous</button>
 			<button id="recordBtn">返回上次记的单词</button>
+			<button id="changeColor">设置单词卡颜色</button>
+			<progress value="5" max="255" id="setColor"></progress>
 			<div class="audio">
 				<div class="en">
 					<img  src="./Pic/audio.png"></img>
@@ -211,6 +226,8 @@
 					_this.recordData();
 					// 显示数据
 					_this.showWord();
+					_this.audio_en.play();
+
 				};
 
 				// 下一个单词
@@ -223,6 +240,7 @@
 					_this.recordData();
 					// 显示数据
 					_this.showWord();
+					_this.audio_en.play();
 				};
 				// 返回上一次记的单词
 				this.recordBtn.onclick = function(){
